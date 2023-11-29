@@ -125,7 +125,7 @@ CREATE TABLE productImage (
 
 INSERT INTO category (categoryName) VALUES ('Residential Architectural Visualization');
 
-INSERT INTO product (productName, productPrice, productImageURL, productDesc, categoryId) VALUES
+INSERT INTO product (productName, productPrice, productDesc, categoryId) VALUES
 ('Project A', 2999.99, 'Project A features unmatched photorealism with all architectural elements drafted to scale. Interior and exterior are fully rendered with real-time rendering in Unreal Engine 5.', 1),
 ('Project B', 3499.99, 'Project B offers powerful cinematics and is furnished with up to 8k textures and foliage, leveraging global illumination and advanced virtualized geometry.', 1),
 ('Project C', 3999.99, 'Project C showcases architectural precision with fully rendered and furnished interiors. It includes post-processing features and real-time ray tracing.', 1),
