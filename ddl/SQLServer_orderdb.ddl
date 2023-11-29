@@ -113,7 +113,7 @@ CREATE TABLE review (
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE productImage (
+CREATE TABLE productImageData (
     imageId             INT IDENTITY,
     productId           INT,
     imageUrl            VARCHAR(100),
@@ -189,30 +189,30 @@ INSERT INTO incart (orderId, productId, quantity, price) VALUES
 (5, 1, 1, 2999.99);
 
 -- Insert images for Project 1
-INSERT INTO productImage (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P1.jpg');
-INSERT INTO productImage (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P2.jpg');
-INSERT INTO productImage (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P3.jpg');
-INSERT INTO productImage (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P5.jpg');
-INSERT INTO productImage (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P6.jpg');
-INSERT INTO productImage (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P7.jpg');
-INSERT INTO productImage (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P8.jpg');
-INSERT INTO productImage (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P9.jpg');
-INSERT INTO productImage (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P10.jpg');
+INSERT INTO productImageData (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P1.jpg');
+INSERT INTO productImageData (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P2.jpg');
+INSERT INTO productImageData (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P3.jpg');
+INSERT INTO productImageData (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P5.jpg');
+INSERT INTO productImageData (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P6.jpg');
+INSERT INTO productImageData (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P7.jpg');
+INSERT INTO productImageData (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P8.jpg');
+INSERT INTO productImageData (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P9.jpg');
+INSERT INTO productImageData (productId, imageUrl) VALUES (1, 'ProductImages/Project_1/P10.jpg');
 
 -- Insert images for Project 2
-INSERT INTO productImage (productId, imageUrl) VALUES (2, 'ProductImages/Project_2/P1.JPG');
-INSERT INTO productImage (productId, imageUrl) VALUES (2, 'ProductImages/Project_2/P2.jpg');
-INSERT INTO productImage (productId, imageUrl) VALUES (2, 'ProductImages/Project_2/P3.jpg');
+INSERT INTO productImageData (productId, imageUrl) VALUES (2, 'ProductImages/Project_2/P1.JPG');
+INSERT INTO productImageData (productId, imageUrl) VALUES (2, 'ProductImages/Project_2/P2.jpg');
+INSERT INTO productImageData (productId, imageUrl) VALUES (2, 'ProductImages/Project_2/P3.jpg');
 
 -- Insert images for Project 3
-INSERT INTO productImage (productId, imageUrl) VALUES (3, 'ProductImages/Project_3/P1.jpg');
-INSERT INTO productImage (productId, imageUrl) VALUES (3, 'ProductImages/Project_3/P2.JPG');
+INSERT INTO productImageData (productId, imageUrl) VALUES (3, 'ProductImages/Project_3/P1.jpg');
+INSERT INTO productImageData (productId, imageUrl) VALUES (3, 'ProductImages/Project_3/P2.JPG');
 
 -- Insert images for Project 4
-INSERT INTO productImage (productId, imageUrl) VALUES (4, 'ProductImages/Project_4/P1.JPG');
-INSERT INTO productImage (productId, imageUrl) VALUES (4, 'ProductImages/Project_4/P2.png');
-INSERT INTO productImage (productId, imageUrl) VALUES (4, 'ProductImages/Project_4/P3.png');
+INSERT INTO productImageData (productId, imageUrl) VALUES (4, 'ProductImages/Project_4/P1.JPG');
+INSERT INTO productImageData (productId, imageUrl) VALUES (4, 'ProductImages/Project_4/P2.png');
+INSERT INTO productImageData (productId, imageUrl) VALUES (4, 'ProductImages/Project_4/P3.png');
 
 -- Insert images for Project 5
-INSERT INTO productImage (productId, imageUrl) VALUES (5, 'ProductImages/Project_5/P1.jpg');
-INSERT INTO productImage (productId, imageUrl) VALUES (5, 'ProductImages/Project_5/P2.JPG');
+INSERT INTO productImageData (productId, imageUrl) VALUES (5, 'ProductImages/Project_5/P1.jpg');
+INSERT INTO productImageData (productId, imageUrl) VALUES (5, 'ProductImages/Project_5/P2.JPG');

@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
             //         ON UPDATE CASCADE ON DELETE CASCADE 
             // );
 
-            let sqlQuery = "SELECT imageUrl, productImage, FROM productImage JOIN product USING(productId)";
+            let sqlQuery = "SELECT imageUrl, productImage, FROM product JOIN productImageData USING(productId)";
 
             result = await pool.request()
                 .input('productId', sql.Int, idVal)
