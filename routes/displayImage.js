@@ -16,7 +16,17 @@ router.get('/', function(req, res, next) {
         try {
             let pool = await sql.connect(dbConfig);
 
-            let sqlQuery = "SELECT productImage, productImageURL FROM product WHERE productId = @productId";
+            // CREATE TABLE productImage (
+            //     imageId             INT IDENTITY,
+            //     productId           INT,
+            //     imageUrl            VARCHAR(100),
+            //     PRIMARY KEY (imageId),
+            //     FOREIGN KEY (productId) REFERENCES product(productId)
+            //         ON UPDATE CASCADE ON DELETE CASCADE 
+            // );
+
+            let sqlQuery = "SELECT imageUrl, productImage, FROM productImage JOIN product USING(productId)";
+
             result = await pool.request()
                 .input('productId', sql.Int, idVal)
                 .query(sqlQuery);        
@@ -31,9 +41,9 @@ router.get('/', function(req, res, next) {
                     res.setHeader('Content-Type', 'image/jpeg'); // we are using the image of the product, not the URL
                     res.write(product.productImage);
                     res.end();
-                } else if (product.productImageURL) {
+                } else if (product.productUrl) {
                     // If no binary image, redirect to the URL
-                    res.redirect(product.productImageURL); // if we have no binary image, we need to redirect to the URL
+                    res.redirect(product.productUrl); // if we have no binary image, we need to redirect to the URL
                 } else {
                     res.status(404).send('Image not available');
                 }
