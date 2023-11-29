@@ -4,18 +4,18 @@ go
 USE orders;
 go
 
-DROP TABLE review;
-DROP TABLE shipment;
-DROP TABLE productinventory;
-DROP TABLE warehouse;
-DROP TABLE orderproduct;
-DROP TABLE incart;
-DROP TABLE product;
-DROP TABLE category;
-DROP TABLE ordersummary;
-DROP TABLE paymentmethod;
-DROP TABLE customer;
-
+DROP TABLE IF EXISTS review;
+DROP TABLE IF EXISTS shipment;
+DROP TABLE IF EXISTS productinventory;
+DROP TABLE IF EXISTS warehouse;
+DROP TABLE IF EXISTS orderproduct;
+DROP TABLE IF EXISTS incart;
+DROP TABLE IF EXISTS productImageData;
+DROP TABLE IF EXISTS product;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS ordersummary;
+DROP TABLE IF EXISTS paymentmethod;
+DROP TABLE IF EXISTS customer;
 
 CREATE TABLE customer (
     customerId          INT IDENTITY,

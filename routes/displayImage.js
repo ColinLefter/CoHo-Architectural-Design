@@ -25,7 +25,9 @@ router.get('/', function(req, res, next) {
             //         ON UPDATE CASCADE ON DELETE CASCADE 
             // );
 
-            let sqlQuery = "SELECT imageUrl, productImage, FROM product JOIN productImageData USING(productId)";
+            let sqlQuery = "SELECT imageUrl, productImage FROM product JOIN productImageData ON product.productId = productImageData.productId";
+            // SELECT imageUrl FROM productImageData WHERE productId = @currentProductId
+
 
             result = await pool.request()
                 .input('productId', sql.Int, idVal)
@@ -41,9 +43,9 @@ router.get('/', function(req, res, next) {
                     res.setHeader('Content-Type', 'image/jpeg'); // we are using the image of the product, not the URL
                     res.write(product.productImage);
                     res.end();
-                } else if (product.productUrl) {
+                } else if (product.imageUrl) {
                     // If no binary image, redirect to the URL
-                    res.redirect(product.productUrl); // if we have no binary image, we need to redirect to the URL
+                    res.redirect(product.imageUrl); // if we have no binary image, we need to redirect to the URL
                 } else {
                     res.status(404).send('Image not available');
                 }
