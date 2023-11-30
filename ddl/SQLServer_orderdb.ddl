@@ -147,39 +147,39 @@ INSERT INTO paymentmethod (paymentType, paymentNumber, paymentExpiryDate, custom
 ('Debit Card', '4567890123456789', '2027-08-31', 5);
 
 -- Insert into 'ordersummary' and 'orderproduct' for Order 1
-DECLARE @orderId1 int;
+
 INSERT INTO ordersummary (orderDate, totalAmount, shiptoAddress, shiptoCity, shiptoState, shiptoPostalCode, shiptoCountry, customerId) 
 VALUES ('2023-11-28 10:00:00', 2999.99, '123 Elm Street', 'Metropolis', 'NY', '12345', 'USA', 1);
-SELECT @orderId1 = @@IDENTITY;
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId1, 1, 1, 2999.99);
+
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (1, 1, 1, 2999.99);
 
 -- Insert into 'ordersummary' and 'orderproduct' for Order 2
-DECLARE @orderId2 int;
+
 INSERT INTO ordersummary (orderDate, totalAmount, shiptoAddress, shiptoCity, shiptoState, shiptoPostalCode, shiptoCountry, customerId) 
 VALUES ('2023-11-29 11:00:00', 3499.99, '456 Oak Avenue', 'Gotham', 'IL', '23456', 'USA', 2);
-SELECT @orderId2 = @@IDENTITY;
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId2, 2, 1, 3499.99);
+
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (2, 2, 1, 3499.99);
 
 -- Insert into 'ordersummary' and 'orderproduct' for Order 3
-DECLARE @orderId3 int;
+
 INSERT INTO ordersummary (orderDate, totalAmount, shiptoAddress, shiptoCity, shiptoState, shiptoPostalCode, shiptoCountry, customerId) 
 VALUES ('2023-11-30 12:00:00', 3999.99, '789 Pine Road', 'Star City', 'CA', '34567', 'USA', 3);
-SELECT @orderId3 = @@IDENTITY;
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId3, 3, 1, 3999.99);
+
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (3, 3, 1, 3999.99);
 
 -- Insert into 'ordersummary' and 'orderproduct' for Order 4
-DECLARE @orderId4 int;
+
 INSERT INTO ordersummary (orderDate, totalAmount, shiptoAddress, shiptoCity, shiptoState, shiptoPostalCode, shiptoCountry, customerId) 
 VALUES ('2023-12-01 13:00:00', 4499.99, '101 Maple Lane', 'Central City', 'OH', '45678', 'USA', 4);
-SELECT @orderId4 = @@IDENTITY;
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId4, 4, 1, 4499.99);
+
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (4, 4, 1, 4499.99);
 
 -- Insert into 'ordersummary' and 'orderproduct' for Order 5
-DECLARE @orderId5 int;
+
 INSERT INTO ordersummary (orderDate, totalAmount, shiptoAddress, shiptoCity, shiptoState, shiptoPostalCode, shiptoCountry, customerId) 
 VALUES ('2023-12-02 14:00:00', 4999.99, '202 Birch Street', 'Liberty City', 'TX', '56789', 'USA', 5);
-SELECT @orderId5 = @@IDENTITY;
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId5, 5, 1, 4999.99);
+
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (5, 5, 1, 4999.99);
 
 INSERT INTO incart (orderId, productId, quantity, price) VALUES
 (1, 2, 1, 3499.99),
