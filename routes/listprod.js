@@ -53,6 +53,8 @@ router.get('/', async function(req, res, next) {
       res.write(`<td>${product.categoryName}</td>`);
       res.write(`<td>${currFormat.format(product.productPrice)}</td>`);
       res.write("</tr>");
+
+      let html1 = ``;
     }
     res.write("</table>");
     res.write('</body></html>');

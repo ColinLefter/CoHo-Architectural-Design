@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header-container {
+    display: flex;
+    align-items: center;
+    background-color: #1a1a1a; /* Dark gray color, adjust as needed */
+}
+.text-section {
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+.nav-links {
+    flex-grow: 1;
+}
