@@ -1,0 +1,24 @@
+<h1>Search for the products you want to buy:</h1>
+<form action="" method="get">
+  <input type="text" name="productName" placeholder="Search for a product" size="50" value="{{searchValue}}">
+  <input type="submit" value="Submit">
+  <input type="reset" value="Reset"><small>(Leave blank for all products)</small>
+</form>
+
+<h2>All Products</h2>
+<table border='1' cellpadding='10'>
+  <tr>
+    <th></th>
+    <th>Product Name</th>
+    <th>Category</th>
+    <th>Product Price</th>
+  </tr>
+  {{#each products}}
+    <tr>
+      <td><a href="/addcart?id={{productId}}&name={{productName}}&price={{productPrice}}">Add to cart</a></td>
+      <td><a href="/product?id={{productId}}&name={{productName}}&price={{productPrice}}">{{productName}}</a></td>
+      <td>{{categoryName}}</td>
+      <td>{{formattedPrice}}</td>
+    </tr>
+  {{/each}}
+</table>
