@@ -6,16 +6,25 @@
   <link href="/dist/output.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script> 
-    $(function(){
-      $("#includedContent").load("navbar.html"); // Ensure the path is correct
-    });
-  </script>
 </head>
 <body>
   <div id="includedContent"></div>
+
   {{#if username}}
     <h3 align="center">Signed in as: {{username}}</h3>
   {{/if}}
+
+  <script> 
+    $(function(){
+      // Load the navbar
+      $("#includedContent").load("navbar.html", function() {
+          // Once the navbar is loaded, add click event listener
+          document.getElementById('user-menu-button').addEventListener('click', function() {
+              var dropdown = document.getElementById('dropdown-menu');
+              dropdown.classList.toggle('hidden');
+          });
+      });
+    });
+  </script>
 </body>
 </html>
