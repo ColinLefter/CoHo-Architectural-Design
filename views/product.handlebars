@@ -1,0 +1,12 @@
+<h1>{{productName}}</h1>
+<table border='0'>
+    <tr><td><strong>Id:</strong></td><td>{{productId}}</td></tr>
+    <tr><td><strong>Price:</strong></td><td>${{productPrice}}</td></tr>
+</table>
+{{#if imageURL}}
+    <img src="{{imageURL}}" alt="Product Image" style="max-width: 100%; max-height: 100%; height: auto; width: auto;">
+{{else}}
+    <p>No image available</p>
+{{/if}}
+<h3><a href="/addcart?id={{productId}}&name={{productName}}&price={{productPrice}}">Add to cart</a></h3>
+<h3><a href="/listprod">Continue Shopping</a></h3>

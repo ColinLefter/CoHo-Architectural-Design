@@ -1,0 +1,38 @@
+<h1>Order List</h1>
+<table border='1'>
+    <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Customer ID</th>
+        <th>Name</th>
+        <th>Total Amount</th>
+    </tr>
+    {{#each ordersData}}
+        <tr>
+            <td>{{orderId}}</td>
+            <td>{{orderDate}}</td>
+            <td>{{customerId}}</td>
+            <td>{{customerName}}</td>
+            <td>${{totalAmount}}</td>
+        </tr>
+        <tr>
+            <td colspan='5'>
+                <table border='1' width='45%' style='margin: 0 auto; margin-right: 100px;'>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                    <!-- Nested loop for product details -->
+                    {{#each products}}
+                        <tr>
+                            <td>{{this.productId}}</td>
+                            <td>{{this.quantity}}</td>
+                            <td>${{this.price}}</td>
+                        </tr>
+                    {{/each}}
+                </table>
+            </td>
+        </tr>
+    {{/each}}
+</table>

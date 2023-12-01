@@ -133,6 +133,7 @@ INSERT INTO product (productName, productPrice, productDesc, categoryId) VALUES
 ('Project E', 4999.99, 'Project E is our premium offering with complete deliverables including the Unreal Engine project file, CAD files, and close-up views of materials.', 1);
 
 INSERT INTO customer (firstName, lastName, email, phonenum, address, city, state, postalCode, country, userid, password) VALUES
+('Arnold', 'Smith', 'arnold.smith@email.com', '555-0600', '102 Maple Lane', 'London', 'East London', '99999', 'United Kingdom', 'arnold', 'test'),
 ('Alex', 'Johnson', 'alex.johnson@email.com', '555-0100', '123 Elm Street', 'Metropolis', 'NY', '12345', 'USA', 'alexj', 'pass123'),
 ('Morgan', 'Brown', 'morgan.brown@email.com', '555-0200', '456 Oak Avenue', 'Gotham', 'IL', '23456', 'USA', 'morganb', 'pass234'),
 ('Jamie', 'Smith', 'jamie.smith@email.com', '555-0300', '789 Pine Road', 'Star City', 'CA', '34567', 'USA', 'jamies', 'pass345'),

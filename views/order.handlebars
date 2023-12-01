@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Order Summary</title>
+</head>
+<body>
+    {{#if error}}
+        <h2>{{error}}</h2>
+    {{else}}
+        <h1>Your Order Summary</h1>
+        <h2>Order ID: {{orderSummary.orderId}}</h2>
+        <h2>Customer ID: {{orderSummary.customerId}}</h2>
+        <h2>Customer Name: {{orderSummary.customer}}</h2>
+        <h2>Total Amount: ${{orderSummary.totalAmount}}</h2>
+        <h2>Order Date: {{orderSummary.currentDateTime}}</h2>
+
+        <table>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+            </tr>
+            {{#each orderSummary.productList}}
+                <tr>
+                    <td>{{this.productId}}</td>
+                    <td>{{this.productName}}</td>
+                    <td align="center">{{this.productQuantity}}</td>
+                    <td align="right">${{this.productPrice}}</td>
+                    <td align="right">${{this.subtotal}}</td>
+                </tr>
+            {{/each}}
+        </table>
+        <h1>Order completed. Will be shipped soon...</h1>
+    {{/if}}
+</body>
+</html>

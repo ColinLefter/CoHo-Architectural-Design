@@ -1,0 +1,13 @@
+<h1>Administrator Sales Report by Day</h1>
+<table border='1'>
+  <tr>
+    <th>Order Date</th>
+    <th>Total Order Amount</th>
+  </tr>
+  {{#each salesData}}
+    <tr>
+      <td>{{orderDate}}</td>
+      <td>${{totalOrderAmount}}</td>
+    </tr>
+  {{/each}}
+</table>
