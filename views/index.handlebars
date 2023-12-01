@@ -8,7 +8,9 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-  <div id="includedContent"></div>
+  <div id="navbar"></div>
+  <div id="landingBanner"></div>
+
 
   {{#if username}}
     <h3 align="center">Signed in as: {{username}}</h3>
@@ -17,13 +19,14 @@
   <script> 
     $(function(){
       // Load the navbar
-      $("#includedContent").load("navbar.html", function() {
+      $("#navbar").load("navbar.html", function() {
           // Once the navbar is loaded, add click event listener
           document.getElementById('user-menu-button').addEventListener('click', function() {
               var dropdown = document.getElementById('dropdown-menu');
               dropdown.classList.toggle('hidden');
           });
       });
+      $("#landingBanner").load("landing_banner.html");
     });
   </script>
 </body>

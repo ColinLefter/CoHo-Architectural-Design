@@ -6,7 +6,7 @@ router.get('/', function (req, res) {
     let username = req.session.username || false;
     
     res.render('index', {
-        title: "CoHo Grocery Main Page",
+        title: "CoHo Architectural Design",
         username: username // Pass username to the view
     });
 })

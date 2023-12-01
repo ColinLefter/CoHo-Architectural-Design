@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 	// Get product name to search for
 	// TODO: Retrieve and display info for the product
     res.write('<h1><a href="/">CoHo Grocery</a></h2>');
+    
     let productId = req.query.id
     let productName = req.query.name;
     let productPrice = req.query.price;
