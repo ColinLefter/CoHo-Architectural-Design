@@ -151,9 +151,22 @@
                   </svg>
                 </a>
                 <!-- Search Bar -->
+                <script>
+                  function handleSearch(event) {
+                    if (event.keyCode === 13) { // 13 is the Enter key
+                      const searchQuery = document.getElementById('searchInput').value;
+                      window.location.href = `/listprod?productName=${encodeURIComponent(searchQuery)}`;
+                    }
+                  }
+                </script>
                 <div id="searchBar" class="absolute top-0 right-0 mt-12 hidden bg-white border border-gray-300 p-4 z-10">
-                  <input type="text" placeholder="Search..." class="border border-gray-300 p-2" value="" />
-                  <!-- You can add a submit button or additional search-related elements here -->
+                  <input 
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search..."
+                    class="border border-gray-300 p-2"
+                    onkeydown="handleSearch(event)"
+                    value="" />
                 </div>
               </div>
             </div>
