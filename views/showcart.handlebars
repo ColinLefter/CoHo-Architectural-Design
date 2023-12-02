@@ -1,37 +1,31 @@
-<div class="shopping-cart">
-  <h1>Your Shopping Cart</h1>
+<h1>Your Shopping Cart</h1>
 
-  {{#if hasProducts}}
-  <table class="cart-table">
-    <thead>
-      <tr>
-        <th>Product Id</th>
-        <th>Product Name</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Subtotal</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each productList}}
-      <tr>
-        <td>{{this.id}}</td>
-        <td>{{this.name}}</td>
-        <td class="quantity" align="center">{{this.quantity}}</td>
-        <td class="price" align="right">${{this.price}}</td>
-        <td class="subtotal" align="right">${{this.subtotal}}</td>
-      </tr>
-      {{/each}}
-      <tr>
-        <td colspan="4" align="right"><b>Order Total</b></td>
-        <td class="total" align="right">${{total}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <h2><a href="checkout" class="checkout-btn">Check Out</a></h2>
-  {{else}}
-  <h1>Your shopping cart is empty!</h1>
-  {{/if}}
+{{#if hasProducts}}
+    <table>
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+        </tr>
+        {{#each productList}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.name}}</td>
+                <td align="center">{{this.quantity}}</td>
+                <td align="right">${{this.price}}</td>
+                <td align="right">${{this.subtotal}}</td>
+            </tr>
+        {{/each}}
+        <tr>
+            <td colspan="4" align="right"><b>Order Total</b></td>
+            <td align="right">${{total}}</td>
+        </tr>
+    </table>
+    <h2><a href="checkout">Check Out</a></h2>
+{{else}}
+    <h1>Your shopping cart is empty!</h1>
+{{/if}}
 
-  <h2><a href="listprod" class="continue-shopping-btn">Continue Shopping</a></h2>
-</div>
+<h2><a href="listprod">Continue Shopping</a></h2>
