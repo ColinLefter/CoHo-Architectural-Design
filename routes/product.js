@@ -12,6 +12,7 @@ router.get('/', async function (req, res, next) {
         let productId = req.query.id;
         let productName = req.query.name;
         let productPrice = req.query.price;
+        let productDesc = req.query.productDesc;
 
         // Convert to appropriate data types
         productId = parseInt(productId);
@@ -25,7 +26,8 @@ router.get('/', async function (req, res, next) {
             productName: productName,
             productId: productId,
             productPrice: productPrice,
-            imageURL: imageURL // Pass imageURL to the handlebars template
+            imageURL: imageURL, // Pass imageURL to the handlebars template
+            productDesc: productDesc
         });
     } catch (err) {
         console.error(err);

@@ -20,12 +20,21 @@
   ```
 -->
 <div class="bg-white">
+  <!-- Modal container (hidden by default) -->
+  <div id="cartModal" style="display:none;">
+      <!-- Content will be loaded here -->
+      <div id="cartContainer"></div>
+
+      <!-- Close button or link -->
+      <button onclick="closeCartModal()">Close Cart</button>
+  </div>
+
   <div class="pt-6">
     <nav aria-label="Breadcrumb">
       <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <li>
           <div class="flex items-center">
-            <a href="#" class="mr-2 text-sm font-medium text-gray-900">Men</a>
+            <a href="/" class="mr-2 text-sm font-medium text-gray-900">CoHo Architectural Design</a>
             <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
               <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
             </svg>
@@ -33,7 +42,7 @@
         </li>
         <li>
           <div class="flex items-center">
-            <a href="#" class="mr-2 text-sm font-medium text-gray-900">Clothing</a>
+            <a href="/listprod" class="mr-2 text-sm font-medium text-gray-900">Design Catalogue</a>
             <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
               <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
             </svg>
@@ -64,12 +73,37 @@
         <h2 class="sr-only">Product information</h2>
         <p class="text-3xl tracking-tight text-gray-900">${{productPrice}}</p>
 
-        <form class="mt-10" action="/addcart" method="get">
+        <form id="addCartForm" class="mt-10" action="/addcart" method="get">
             <input type="hidden" name="id" value="{{productId}}">
             <input type="hidden" name="name" value="{{productName}}">
             <input type="hidden" name="price" value="{{productPrice}}">
             <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to cart</button>
         </form>
+        <script>
+        function showCartModal(html) {
+            document.getElementById('cartContainer').innerHTML = html;
+            document.getElementById('cartModal').style.display = 'block';
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        document.getElementById('addCartForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let formData = new FormData(this);
+            let queryParams = new URLSearchParams(formData).toString();
+            let fetchUrl = '/addcart?' + queryParams;
+
+            fetch(fetchUrl)
+                .then(response => response.text())
+                .then(html => {
+                    showCartModal(html);
+                })
+                .catch(error => console.error('Error:', error));
+        });
+        </script>
         <form class="mt-10" action="/listprod" method="get">
             <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Continue shopping</button>
         </form>
@@ -81,7 +115,7 @@
           <h3 class="sr-only">Description</h3>
 
           <div class="space-y-6">
-            <p class="text-base text-gray-900">The {{productName}} allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: &quot;Black&quot;. Need to add an extra pop of color to your outfit? Our white tee has you covered.</p>
+            <p class="text-base text-gray-900">{{productDesc}}</p>
           </div>
         </div>
 
@@ -90,10 +124,15 @@
 
           <div class="mt-4">
             <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-              <li class="text-gray-400"><span class="text-gray-600">Hand cut and sewn locally</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Dyed with our proprietary colors</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Pre-washed &amp; pre-shrunk</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Ultra-soft 100% cotton</span></li>
+              <li class="text-gray-400"><span class="text-gray-600">Fully rendered interior and exterior</span></li>
+              <li class="text-gray-400"><span class="text-gray-600">Fully furnished interiors</span></li>
+              <li class="text-gray-400"><span class="text-gray-600">Built in Unreal Engine 5</span></li>
+              <li class="text-gray-400"><span class="text-gray-600">Up to 8k textures and foliage</span></li>
+              <li class="text-gray-400"><span class="text-gray-600">Ray tracing</span></li>
+              <li class="text-gray-400"><span class="text-gray-600">Up to 8k textures and foliage</span></li>
+              <li class="text-gray-400"><span class="text-gray-600">Real-time rendering</span></li>
+              <li class="text-gray-400"><span class="text-gray-600">Global illumination and advanced virtualized geometry with Unreal Engine 5 Lumen + Nanite</span></li>
+              <li class="text-gray-400"><span class="text-gray-600">Post-processing</span></li>
             </ul>
           </div>
         </div>

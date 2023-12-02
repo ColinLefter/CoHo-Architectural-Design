@@ -43,7 +43,14 @@ router.get('/', function(req, res, next) {
     }
 
     req.session.productList = productList;
-    res.redirect("/showcart");
+    res.render('showcart', { productList: productList }, function(err, html) {
+        if (err) {
+            console.error(err);
+            res.sendStatus(500);
+        } else {
+            res.send(html);
+        }
+    });
 });
 
 module.exports = router;

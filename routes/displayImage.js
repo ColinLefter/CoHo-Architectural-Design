@@ -33,7 +33,6 @@ router.get('/', function(req, res, next) {
                     res.end();
                 } else if (product.imageUrl) {
                     // If no binary image, redirect to the URL
-                    console.log(product.imageUrl);
                     res.redirect(product.imageUrl); // if we have no binary image, we need to redirect to the URL
                 } else {
                     res.status(404).send('Image not available');
