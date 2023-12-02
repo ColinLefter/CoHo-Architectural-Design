@@ -15,13 +15,41 @@
     <th>Category</th>
     <th>Product Price</th>
   </tr>
+  <div id="cartModal" style="display:none;">
+    <div id="cartContainer"></div>
+    <button onclick="closeCartModal()">Close Cart</button>
+  </div>
   {{#each products}}
     <tr>
-      <td><a href="/addcart?id={{productId}}&name={{productName}}&price={{productPrice}}">Add to cart</a></td>
-      <td><a href="/product?id={{productId}}&name={{productName}}&price={{productPrice}}">{{productName}}</a></td>
-      <td>{{categoryName}}</td>
-      <td>{{formattedPrice}}</td>
+        <td><a href="#" onclick="addToCart('{{productId}}', '{{productName}}', '{{productPrice}}')">Add to cart</a></td>
+        <td><a href="/product?id={{productId}}&name={{productName}}&price={{productPrice}}">{{productName}}</a></td>
+        <td>{{categoryName}}</td>
+        <td>{{formattedPrice}}</td>
     </tr>
+    <script>
+        function showCartModal(html) {
+            document.getElementById('cartContainer').innerHTML = html;
+            document.getElementById('cartModal').style.display = 'block';
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        function addToCart(productId, productName, productPrice) {
+            // Prevent the default link behavior
+            event.preventDefault();
+
+            let fetchUrl = `/addcart?id=${encodeURIComponent(productId)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}`;
+
+            fetch(fetchUrl)
+                .then(response => response.text())
+                .then(html => {
+                    showCartModal(html);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
   {{/each}}
 </table>
 </div>

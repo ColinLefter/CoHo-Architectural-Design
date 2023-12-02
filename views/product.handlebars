@@ -80,29 +80,29 @@
             <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to cart</button>
         </form>
         <script>
-        function showCartModal(html) {
-            document.getElementById('cartContainer').innerHTML = html;
-            document.getElementById('cartModal').style.display = 'block';
-        }
+          function showCartModal(html) {
+              document.getElementById('cartContainer').innerHTML = html;
+              document.getElementById('cartModal').style.display = 'block';
+          }
 
-        function closeCartModal() {
-            document.getElementById('cartModal').style.display = 'none';
-        }
+          function closeCartModal() {
+              document.getElementById('cartModal').style.display = 'none';
+          }
 
-        document.getElementById('addCartForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+          document.getElementById('addCartForm').addEventListener('submit', function(e) {
+              e.preventDefault();
 
-            let formData = new FormData(this);
-            let queryParams = new URLSearchParams(formData).toString();
-            let fetchUrl = '/addcart?' + queryParams;
+              let formData = new FormData(this);
+              let queryParams = new URLSearchParams(formData).toString();
+              let fetchUrl = '/addcart?' + queryParams;
 
-            fetch(fetchUrl)
-                .then(response => response.text())
-                .then(html => {
-                    showCartModal(html);
-                })
-                .catch(error => console.error('Error:', error));
-        });
+              fetch(fetchUrl)
+                  .then(response => response.text())
+                  .then(html => {
+                      showCartModal(html);
+                  })
+                  .catch(error => console.error('Error:', error));
+          });
         </script>
         <form class="mt-10" action="/listprod" method="get">
             <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Continue shopping</button>
