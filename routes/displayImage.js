@@ -16,18 +16,7 @@ router.get('/', function(req, res, next) {
         try {
             let pool = await sql.connect(dbConfig);
 
-            // CREATE TABLE productImage (
-            //     imageId             INT IDENTITY,
-            //     productId           INT,
-            //     imageUrl            VARCHAR(100),
-            //     PRIMARY KEY (imageId),
-            //     FOREIGN KEY (productId) REFERENCES product(productId)
-            //         ON UPDATE CASCADE ON DELETE CASCADE 
-            // );
-
             let sqlQuery = "SELECT imageUrl, productImage FROM product JOIN productImageData ON product.productId = productImageData.productId";
-            // SELECT imageUrl FROM productImageData WHERE productId = @currentProductId
-
 
             result = await pool.request()
                 .input('productId', sql.Int, idVal)
