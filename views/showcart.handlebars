@@ -37,9 +37,35 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
+                    
                 </div>
               </div>
 
+              <script>
+                function showCartModal(html) {
+                    document.getElementById('cartContainer').innerHTML = html;
+                    document.getElementById('cartModal').style.display = 'block';
+                }
+
+                function closeCartModal() {
+                    document.getElementById('cartModal').style.display = 'none';
+                }
+
+                document.getElementById('addCartForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    let formData = new FormData(this);
+                    let queryParams = new URLSearchParams(formData).toString();
+                    let fetchUrl = '/addcart?' + queryParams;
+
+                    fetch(fetchUrl)
+                        .then(response => response.text())
+                        .then(html => {
+                            showCartModal(html);
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+              </script>
               <div class="mt-8">
                 <div class="flow-root">
                   <ul role="list" class="-my-6 divide-y divide-gray-200">
