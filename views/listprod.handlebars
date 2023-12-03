@@ -49,36 +49,49 @@
     <button onclick="closeCartModal()">Close Cart</button>
   </div>
   {{#each products}}
-    <tr>
-        <td><a href="#" onclick="addToCart('{{productId}}', '{{productName}}', '{{productPrice}}')">Add to cart</a></td>
-        <td><a href="/product?id={{productId}}&name={{productName}}&price={{productPrice}}">{{productName}}</a></td>
-        <td>{{categoryName}}</td>
-        <td>{{formattedPrice}}</td>
-    </tr>
-    <script>
-        function showCartModal(html) {
-            document.getElementById('cartContainer').innerHTML = html;
-            document.getElementById('cartModal').style.display = 'block';
-        }
-
-        function closeCartModal() {
-            document.getElementById('cartModal').style.display = 'none';
-        }
-
-        function addToCart(productId, productName, productPrice) {
-            // Prevent the default link behavior
-            event.preventDefault();
-
-            let fetchUrl = `/addcart?id=${encodeURIComponent(productId)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}`;
-
-            fetch(fetchUrl)
-                .then(response => response.text())
-                .then(html => {
-                    showCartModal(html);
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
+  <tr>
+      <td><a href="#" class="addToCartLink" data-product-id="{{productId}}" data-product-name="{{productName}}" data-product-price="{{productPrice}}">Add to cart</a></td>
+      <td><a href="/product?id={{productId}}&name={{productName}}&price={{productPrice}}">{{productName}}</a></td>
+      <td>{{categoryName}}</td>
+      <td>{{formattedPrice}}</td>
+  </tr>
   {{/each}}
+
+  <script>
+      let productCounts = {}; // Object to keep track of items added to the cart for each product
+
+      document.querySelectorAll('.addToCartLink').forEach(link => {
+          link.addEventListener('click', function(e) {
+              e.preventDefault();
+              let productId = this.getAttribute('data-product-id');
+
+              // Initialize the count for the product if it doesn't exist
+              if (!productCounts[productId]) {
+                  productCounts[productId] = 0;
+              }
+
+              let productName = this.getAttribute('data-product-name');
+              let productPrice = this.getAttribute('data-product-price');
+
+              let fetchUrl = `/addcart?id=${encodeURIComponent(productId)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}`;
+
+              fetch(fetchUrl)
+                  .then(response => {
+                      if (response.ok) {
+                          productCounts[productId]++; // Increment item count for this product
+                          this.textContent = 'Items in cart: ' + productCounts[productId]; // Update link text for this product
+                      } else {
+                          // Handle response error
+                          console.error('Error:', response.statusText);
+                          this.textContent = 'Error adding to cart';
+                      }
+                  })
+                  .catch(error => {
+                      console.error('Error:', error);
+                      this.textContent = 'Error adding to cart';
+                  });
+          });
+      });
+  </script>
 </table>
 </div>

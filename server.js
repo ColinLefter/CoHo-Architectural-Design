@@ -90,12 +90,3 @@ app.use('/createAccount', createAccount);
 
 // Starting our Express app
 app.listen(3000)
-
-const express = require('express');
-const router = express.Router();
-const sql = require('mssql');
-const fs = require('fs');
-
-console.log('Current directory: ' + process.cwd());
-
-module.exports = router;
