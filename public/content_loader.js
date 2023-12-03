@@ -1,6 +1,6 @@
 $(function(){
     // Load the navbar
-    $("#navbar").load("/navbar.html", function() {
+    $("#toggle_settings").load("/toggle_settings.html", function() {
         // Once the navbar is loaded, add click event listener
         var userMenuButton = document.getElementById('user-menu-button');
         if (userMenuButton) {

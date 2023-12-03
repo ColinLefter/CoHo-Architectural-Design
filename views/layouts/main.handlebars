@@ -143,14 +143,15 @@
           <div class="ml-auto flex items-center">
             <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
               {{#if username}}
-                <div class="flow-root">
-                  <a class="mr-2 border-transparent text-gray-700 hover:text-gray-800 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out">Signed in as {{username}}</a>
-                </div>
-              {{else}}
-                <div class="flow-root">
-                  <a href="/login" class="border-transparent text-gray-700 hover:text-gray-800 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out">Sign in</a>
-                </div>
-              {{/if}}
+              <div class="flow-root">
+                <a href="#" class="mr-2 border-transparent text-gray-700 hover:text-gray-800 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out">Signed in as {{username}}</a>
+              </div>
+            {{else}}
+              <div class="flow-root">
+                <a href="/login" class="border-transparent text-gray-700 hover:text-gray-800 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out">Sign in</a>
+              </div>
+            {{/if}}
+            
               <span class="h-6 w-px bg-gray-200" aria-hidden="true"></span>
               <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-800">Create account</a>
             </div>
@@ -236,6 +237,7 @@
     </nav>
   </header>
 </div>
+  <div id="toggle_settings"></div>
   {{{body}}}
 </body>
 </html>
