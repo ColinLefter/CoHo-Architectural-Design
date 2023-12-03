@@ -1,5 +1,27 @@
-<h1>Administrator Sales Report by Day</h1>
-<table border='1'>
+<style>
+  table {
+    border-collapse: collapse;
+    width: 80%;
+    margin-top: 5px;
+    margin-bottom: 50px; 
+  }
+
+  table, th, td {
+    border: 3px solid #7e8789;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+</style>
+
+
+<table>
+  <tr>
+    <th>Administrator Sales Report by Day</th>
+  </tr>
+
   <tr>
     <th>Order Date</th>
     <th>Total Order Amount</th>
@@ -8,6 +30,39 @@
     <tr>
       <td>{{orderDate}}</td>
       <td>${{totalOrderAmount}}</td>
+    </tr>
+  {{/each}}
+</table>
+
+
+<table>
+  <tr>
+    <th>Customers' Information</th>
+  </tr>
+
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Postal Code</th>
+    <th>Country</th>
+  </tr>
+
+  {{#each customerData}}
+    <tr>
+      <td>{{firstname}}</td>
+      <td>{{lastname}}</td>
+      <td>{{email}}</td>
+      <td>{{phoneNum}}</td>
+      <td>{{address}}</td>
+      <td>{{city}}</td>
+      <td>{{state}}</td>
+      <td>{{postalCode}}</td>
+      <td>{{country}}</td>
     </tr>
   {{/each}}
 </table>
