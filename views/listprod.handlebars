@@ -1,11 +1,40 @@
 <div style="margin-top: 20px;"> <!-- Adding space -->
 
 <h1>Search for the products you want to buy:</h1>
-<form action="/listprod" method="get"> <!-- Updated form action -->
-  <input type="text" name="productName" placeholder="Search for a product" size="50" value="{{searchValue}}">
-  <input type="submit" value="Submit">
-  <input type="reset" value="Reset"><small>(Leave blank for all products)</small>
-</form>
+
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 90%;
+  }
+
+  table, th, td {
+    border: 5px solid #ddd;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+</style>
+
+<table>
+  <tr>
+    <td colspan="2">
+      <form action="/listprod" method="get">
+        <input type="text" name="productName" placeholder="Search for a product" size="50" value="{{searchValue}}">
+      </td>
+      <td>
+        <input type="submit" value="Submit">
+      </td>
+      <td>
+        <input type="reset" value="Reset"><small> (Leave blank for all products)</small>
+      </td>
+    </tr>
+  </form>
+</table>
+
 
 <h2>All Products</h2>
 <table border='1' cellpadding='10'>
