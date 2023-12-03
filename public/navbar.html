@@ -130,7 +130,16 @@
 
           <div class="ml-auto flex items-center">
             <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-              <a href="/login" class="border-transparent text-gray-700 hover:text-gray-800 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out">Sign in</a>
+
+              {{#if username}}
+                <div class="flow-root"></div>
+                  <a href="#" class="-m-2 block p-2 font-medium text-gray-900">Signed in as {{username}}</a>
+                </div>
+              {{else}}
+                <div class="flow-root">
+                  <a href="/login" class="border-transparent text-gray-700 hover:text-gray-800 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out">Sign in</a>
+                </div>
+              {{/if}}
               <span class="h-6 w-px bg-gray-200" aria-hidden="true"></span>
               <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-800">Create account</a>
             </div>
