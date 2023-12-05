@@ -154,6 +154,8 @@ router.get('/', async function(req, res, next) {
         };
 
         // Render the order summary template
+        /** Clear session/cart **/
+        req.session.productList = [];
         return res.render('order', { error: null, orderSummary: orderSummaryData });
 
     } catch (err) {

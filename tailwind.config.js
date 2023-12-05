@@ -4,7 +4,14 @@ module.exports = {
     "templates/navbar.html"
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateRows: {
+        '[auto,auto,1fr]': 'auto auto 1fr',
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography')]
 }
