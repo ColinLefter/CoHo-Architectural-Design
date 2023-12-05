@@ -79,25 +79,16 @@
             // Prevent the default link behavior
             event.preventDefault();
 
-              let fetchUrl = `/addcart?id=${encodeURIComponent(productId)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}`;
+            let fetchUrl = `/addcart?id=${encodeURIComponent(productId)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}`;
 
-              fetch(fetchUrl)
-                  .then(response => {
-                      if (response.ok) {
-                          productCounts[productId]++; // Increment item count for this product
-                          this.textContent = 'Items in cart: ' + productCounts[productId]; // Update link text for this product
-                      } else {
-                          // Handle response error
-                          console.error('Error:', response.statusText);
-                          this.textContent = 'Error adding to cart';
-                      }
-                  })
-                  .catch(error => {
-                      console.error('Error:', error);
-                      this.textContent = 'Error adding to cart';
-                  });
-          });
-      });
-  </script>
+            fetch(fetchUrl)
+                .then(response => response.text())
+                .then(html => {
+                    showCartModal(html);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+  {{/each}}
 </table>
 </div>
