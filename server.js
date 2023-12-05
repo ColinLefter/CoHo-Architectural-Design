@@ -2,6 +2,8 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session')
 const bodyParser  = require('body-parser');
+const sql = require('mssql');
+const fs = require('fs');
 
 let index = require('./routes/index');
 let loadData = require('./routes/loaddata');
@@ -65,6 +67,36 @@ app.set('view engine', 'handlebars');
 // Setting up where static assets should
 // be served from.
 app.use(express.static('public'));
+
+// Middleware function to load data in the background
+app.use(async (req, res, next) => {
+  if (!req.session.loaded) {
+    // Load data here (similar to your loaddata.js logic)
+    try {
+      let pool = await sql.connect(dbConfig);
+
+      // Load the data from your file
+      let data = fs.readFileSync("./ddl/SQLServer_orderdb.ddl", { encoding: 'utf8' });
+      let commands = data.split(";");
+      for (let i = 0; i < commands.length; i++) {
+        let command = commands[i];
+        try {
+          let result = await pool.request().query(command);
+          // Handle or log the result as needed
+        } catch (err) {
+          // Handle any errors                    
+        }
+      }
+
+      // Set a flag in the session to indicate that the database is loaded
+      req.session.loaded = true;
+    } catch (err) {
+      console.dir(err);
+    }
+  }
+  next();
+});
+
 
 // Setting up Express.js routes.
 // These present a "route" on the URL of the site.
