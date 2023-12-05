@@ -39,6 +39,8 @@ CREATE TABLE paymentmethod (
     paymentNumber       VARCHAR(30),
     paymentExpiryDate   DATE,
     customerId          INT,
+    nameOnCard          VARCHAR(100),
+    cvv                 SMALLINT,
     PRIMARY KEY (paymentMethodId),
     FOREIGN KEY (customerId) REFERENCES customer(customerid)
         ON UPDATE CASCADE ON DELETE CASCADE 
@@ -141,12 +143,12 @@ INSERT INTO customer (firstName, lastName, email, phonenum, address, city, state
 ('Casey', 'Lee', 'casey.lee@email.com', '555-0400', '101 Maple Lane', 'Central City', 'OH', '45678', 'USA', 'caseyl', 'pass456'),
 ('Dana', 'Taylor', 'dana.taylor@email.com', '555-0500', '202 Birch Street', 'Liberty City', 'TX', '56789', 'USA', 'danat', 'pass567');
 
-INSERT INTO paymentmethod (paymentType, paymentNumber, paymentExpiryDate, customerId) VALUES
-('Credit Card', '1234567890123456', '2025-12-31', 1),
-('Credit Card', '2345678901234567', '2024-11-30', 2),
-('PayPal', 'jamie.smith@email.com', '2023-10-31', 3),
-('Credit Card', '3456789012345678', '2026-09-30', 4),
-('Debit Card', '4567890123456789', '2027-08-31', 5);
+INSERT INTO paymentmethod (paymentType, paymentNumber, paymentExpiryDate, customerId, nameOnCard, cvv) VALUES
+('Credit Card', '1234567890123456', '2025-12-31', 1, 'Arnold Smith', 123),
+('Credit Card', '2345678901234567', '2024-11-30', 2, 'Alex Johnson', 456),
+('Debit Card', '3456789012345678', '2023-10-31', 3, 'Morgan Brown', 789),
+('Credit Card', '4567890123456789', '2026-09-30', 4, 'Jamie Smith', 321),
+('Debit Card', '5678901234567890', '2027-08-31', 5, 'Casey Lee', 654);
 
 -- Insert into 'ordersummary' and 'orderproduct' for Order 1
 
