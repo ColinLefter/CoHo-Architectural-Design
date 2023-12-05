@@ -71,6 +71,7 @@ CREATE TABLE product (
     productPrice        DECIMAL(10,2),
     productDesc         VARCHAR(1000),
     categoryId          INT,
+    displayOne          VARCHAR(100),
     PRIMARY KEY (productId),
     FOREIGN KEY (categoryId) REFERENCES category(categoryId)
 );
@@ -125,12 +126,12 @@ CREATE TABLE productImageData (
 
 INSERT INTO category (categoryName) VALUES ('Exterior Design Class 2'), ('Interior Design Class 2'), ('Interior Design Class 1'), ('Special Build'), ('Highrise Design');
 
-INSERT INTO product (productName, productPrice, productDesc, categoryId) VALUES
-('Project A', 2999.99, 'Project A features unmatched photorealism with all architectural elements drafted to scale. Interior and exterior are fully rendered with real-time rendering in Unreal Engine 5.', 1),
-('Project B', 3499.99, 'Project B offers powerful cinematics and is furnished with up to 8k textures and foliage, leveraging global illumination and advanced virtualized geometry.', 2),
-('Project C', 3999.99, 'Project C showcases architectural precision with fully rendered and furnished interiors. It includes post-processing features and real-time ray tracing.', 3),
-('Project D', 4499.99, 'Project D provides a cinematic showcasing of the render with high-resolution images and the Unreal Engine project file accompanied by CAD files.', 4),
-('Project E', 4999.99, 'Project E is our premium offering with complete deliverables including the Unreal Engine project file, CAD files, and close-up views of materials.', 5);
+INSERT INTO product (productName, productPrice, productDesc, categoryId, displayOne) VALUES
+('Project A', 2999.99, 'Project A features unmatched photorealism with all architectural elements drafted to scale. Interior and exterior are fully rendered with real-time rendering in Unreal Engine 5.', 1, 'ProductImages/Project_1/P2.jpg'),
+('Project B', 3499.99, 'Project B offers powerful cinematics and is furnished with up to 8k textures and foliage, leveraging global illumination and advanced virtualized geometry.', 2, 'ProductImages/Project_2/P2.jpg'),
+('Project C', 3999.99, 'Project C showcases architectural precision with fully rendered and furnished interiors. It includes post-processing features and real-time ray tracing.', 3, 'ProductImages/Project_3/P2.JPG'),
+('Project D', 4499.99, 'Project D provides a cinematic showcasing of the render with high-resolution images and the Unreal Engine project file accompanied by CAD files.', 4, 'ProductImages/Project_4/P2.png'),
+('Project E', 4999.99, 'Project E is our premium offering with complete deliverables including the Unreal Engine project file, CAD files, and close-up views of materials.', 5, 'ProductImages/Project_5/P2.JPG');
 
 INSERT INTO customer (firstName, lastName, email, phonenum, address, city, state, postalCode, country, userid, password) VALUES
 ('Arnold', 'Smith', 'arnold.smith@email.com', '555-0600', '102 Maple Lane', 'London', 'East London', '99999', 'United Kingdom', 'arnold', 'test'),
