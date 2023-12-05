@@ -14,7 +14,7 @@ router.get('/', async function(req, res, next) {
     let pool = await sql.connect(dbConfig);
     let name = req.query.productName || '%';
     
-    let query = "SELECT productId, productName, productPrice, categoryName, displayOne FROM product JOIN category ON product.categoryId = category.categoryId WHERE productName LIKE @name";
+    let query = "SELECT productId, productName, productPrice, categoryName, displayOne, productDesc FROM product JOIN category ON product.categoryId = category.categoryId WHERE productName LIKE @name";
     let results = await pool.request()
       .input('name', sql.VarChar, `%${name}%`)
       .query(query);
