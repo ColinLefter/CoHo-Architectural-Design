@@ -37,7 +37,10 @@
             </div>
             <!-- Product Details -->
             <div class="ml-4 flex-grow">
-              <h3 class="text-lg font-bold dark:text-white">{{productName}}</h3>
+              <!-- Product Title with Clickable Link -->
+              <a href="/product?id={{productId}}&name={{productName}}&price={{productPrice}}&productDesc={{productDesc}}" class="text-lg font-bold dark:text-white hover:text-blue-600">
+                <h3>{{productName}}</h3>
+              </a>
               <p class="text-gray-500 dark:text-white">{{categoryName}}</p>
               <p class="text-gray-500 dark:text-white">{{formattedPrice}}</p>
             </div>
@@ -50,7 +53,6 @@
     </div> <!-- End of container for search and product list -->
   </div>
 </div>
-
 
 <!-- Cart Modal -->
 <div id="cartModal" style="display:none;" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
