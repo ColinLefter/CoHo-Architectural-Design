@@ -11,16 +11,20 @@
       <form action="/listprod" method="get" class="w-full">
         <div class="flex items-center">
           <!-- Search Input -->
-          <input type="text" name="productName" placeholder="Search for a product" class="border-2 border-gray-300 rounded-lg p-2 flex-grow" value="{{searchValue}}">
+          <input type="text" name="productName" placeholder="Search for a product" class="border-2 rounded-lg p-2 flex-grow dark:bg-black dark:text-white border-gray-300 dark:border-white" value="{{searchValue}}">
 
           <!-- Buttons -->
-          <div class="ml-2 flex items-center">
-            <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            <input type="reset" value="Reset" class="bg-gray-300 hover:bg-gray-400 text-black dark:text-white py-2 px-4 rounded ml-1">
+          <div class="ml-2 flex items-center space-x-2">
+            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+              <input type="submit" value="Submit" class="border-2 rounded-lg p-2 flex-grow dark:bg-black dark:text-white border-gray-300 dark:border-white">
+            </div>
+            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+              <input type="reset" value="Reset" class="border-2 rounded-lg p-2 flex-grow dark:bg-black dark:text-white border-gray-300 dark:border-white">
+            </div>
           </div>
         </div>
       </form>
-      
+
       <h2 class="text-2xl font-bold tracking-tight text-black dark:text-white">All Products</h2>
 
       <!-- Product List -->
@@ -33,9 +37,9 @@
             </div>
             <!-- Product Details -->
             <div class="ml-4 flex-grow">
-              <h3 class="text-lg font-bold">{{productName}}</h3>
+              <h3 class="text-lg font-bold dark:text-white">{{productName}}</h3>
               <p class="text-gray-500 dark:text-white">{{categoryName}}</p>
-              <p class="text-gray-500 dark:text-white">${{formattedPrice}}</p>
+              <p class="text-gray-500 dark:text-white">{{formattedPrice}}</p>
             </div>
             <!-- Add to Cart Link -->
             <a href="#" onclick="addToCart('{{productId}}', '{{productName}}', '{{productPrice}}')" class="text-blue-600 hover:text-blue-800 ml-4">Add to cart</a>

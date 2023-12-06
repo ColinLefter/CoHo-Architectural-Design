@@ -142,7 +142,7 @@
 
           <div class="ml-auto flex items-center">
             <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-              {{#if username}}
+            {{#if username}}
               <div class="flow-root">
                 <a href="#" class="mr-2 border-transparent text-gray-700 dark:text-white hover:text-gray-800 dark:text-white relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out">Signed in as {{username}}</a>
               </div>
@@ -185,7 +185,7 @@
                     type="text"
                     id="searchInput"
                     placeholder="Search..."
-                    class="border border-gray-300 p-2"
+                    class="border border-gray-300 dark:bg-gray-900 p-2"
                     onkeydown="handleSearch(event)"
                     value="" />
                 </div>
@@ -223,7 +223,7 @@
               From: "transform opacity-100 scale-100"
               To: "transform opacity-0 scale-95"
           -->
-          <div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-black py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" id="dropdown-menu">
+          <div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-900 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" id="dropdown-menu">
             <!-- Active: "bg-gray-100", Not Active: "" -->
             <a href="/customer" class="block px-4 py-2 text-sm text-gray-700 dark:text-white" role="menuitem" tabindex="-1" id="user-menu-item-0">My Account</a>
             <a href="/showCartFullScreen" class="block px-4 py-2 text-sm text-gray-700 dark:text-white" role="menuitem" tabindex="-1" id="user-menu-item-0">My Cart</a>
