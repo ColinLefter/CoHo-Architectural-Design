@@ -1,38 +1,35 @@
-<h1>Order List</h1>
-<table border='1'>
-    <tr>
-        <th>Order ID</th>
-        <th>Order Date</th>
-        <th>Customer ID</th>
-        <th>Name</th>
-        <th>Total Amount</th>
-    </tr>
-    {{#each ordersData}}
-        <tr>
-            <td>{{orderId}}</td>
-            <td>{{orderDate}}</td>
-            <td>{{customerId}}</td>
-            <td>{{customerName}}</td>
-            <td>${{totalAmount}}</td>
-        </tr>
-        <tr>
-            <td colspan='5'>
-                <table border='1' width='45%' style='margin: 0 auto; margin-right: 100px;'>
-                    <tr>
-                        <th>Product ID</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                    </tr>
-                    <!-- Nested loop for product details -->
-                    {{#each products}}
-                        <tr>
-                            <td>{{productId}}</td>
-                            <td>{{quantity}}</td>
-                            <td>${{price}}</td>
-                        </tr>
-                    {{/each}}
-                </table>
-            </td>
-        </tr>
-    {{/each}}
-</table>
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="border-b border-gray-200">
+        <div class="mt-5 grid grid-cols-1 gap-y-8"></div>
+        <h1 class="text-left text-2xl font-bold tracking-tight text-black sm:text-4xl">Orders</h1>
+        <ul role="list" class="divide-y divide-gray-100">
+        {{#each ordersData}}
+        <li class="flex justify-between gap-x-6 py-5">
+            <div class="flex min-w-0 gap-x-4">
+            <div class="min-w-0 flex-auto">
+                <p class="text-sm font-semibold leading-6 text-gray-900">Order #{{orderId}}</p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{customerName}}</p>
+                <!-- Product Details -->
+                {{#each products}}
+                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">Product id: {{productId}}</p>
+                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">Quantity: {{quantity}}</p>
+                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">Sku price: ${{price}}</p>
+                {{/each}}
+                
+            </div>
+            </div>
+            <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+            <p class="text-sm leading-6 text-gray-900">${{totalAmount}}</p>
+            <div class="mt-1 flex items-center gap-x-1.5">
+                <div class="flex-none rounded-full bg-emerald-500/20 p-1">
+                <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
+                </div>
+                <p class="text-xs leading-5 text-gray-500">Paid ({{orderDate}})</p>
+            </div>
+            </div>
+        </li>
+        {{/each}}
+
+        </ul>
+    </div>
+</div>
