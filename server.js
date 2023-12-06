@@ -68,6 +68,11 @@ app.set('view engine', 'handlebars');
 // be served from.
 app.use(express.static('public'));
 
+const pool = new sql.ConnectionPool(dbConfig);
+pool.on('error', err => {
+    console.error('SQL pool error:', err);
+});
+
 // Middleware function to load data in the background
 app.use(async (req, res, next) => {
   if (!req.session.loaded) {
