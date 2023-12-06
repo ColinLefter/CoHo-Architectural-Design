@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "templates/navbar.html"
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       gridTemplateRows: {

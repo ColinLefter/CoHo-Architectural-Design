@@ -1,6 +1,6 @@
-<div class="bg-white">
+<div class="bg-white dark:bg-black">
   <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-8 lg:px-8">
-    <h1 class="text-3xl font-bold tracking-tight text-black">Product Catalogue</h1>
+    <h1 class="text-3xl font-bold tracking-tight text-black dark:text-white">Product Catalogue</h1>
 
     <div style="margin-top: 20px;"> <!-- Adding space -->
 
@@ -16,12 +16,12 @@
           <!-- Buttons -->
           <div class="ml-2 flex items-center">
             <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            <input type="reset" value="Reset" class="bg-gray-300 hover:bg-gray-400 text-black py-2 px-4 rounded ml-1">
+            <input type="reset" value="Reset" class="bg-gray-300 hover:bg-gray-400 text-black dark:text-white py-2 px-4 rounded ml-1">
           </div>
         </div>
       </form>
       
-      <h2 class="text-2xl font-bold tracking-tight text-black">All Products</h2>
+      <h2 class="text-2xl font-bold tracking-tight text-black dark:text-white">All Products</h2>
 
       <!-- Product List -->
       <div class="divide-y divide-gray-200">
@@ -34,8 +34,8 @@
             <!-- Product Details -->
             <div class="ml-4 flex-grow">
               <h3 class="text-lg font-bold">{{productName}}</h3>
-              <p class="text-gray-500">{{categoryName}}</p>
-              <p class="text-gray-500">${{formattedPrice}}</p>
+              <p class="text-gray-500 dark:text-white">{{categoryName}}</p>
+              <p class="text-gray-500 dark:text-white">${{formattedPrice}}</p>
             </div>
             <!-- Add to Cart Link -->
             <a href="#" onclick="addToCart('{{productId}}', '{{productName}}', '{{productPrice}}')" class="text-blue-600 hover:text-blue-800 ml-4">Add to cart</a>
@@ -50,7 +50,7 @@
 
 <!-- Cart Modal -->
 <div id="cartModal" style="display:none;" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-  <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+  <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white dark:bg-black">
     <div id="cartContainer"></div>
     <button onclick="closeCartModal()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Close Cart</button>
   </div>

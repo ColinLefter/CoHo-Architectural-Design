@@ -16,5 +16,7 @@ $(function(){
     // Conditionally load the landing banner
     if ($("#landingBanner").length > 0) { // This part checks for whether an id exists in the corresponding file
         $("#landingBanner").load("/landing_banner.html"); // Extremely useful since we just need to add an id to the file where we need the content
+    } else if ($("#productGrid").length > 0) {
+        $("#productGrid").load("/product_grid.html");
     }
 });

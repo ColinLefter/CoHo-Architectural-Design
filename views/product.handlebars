@@ -19,7 +19,7 @@
   }
   ```
 -->
-<div class="bg-white">
+<div class="bg-white dark:bg-black">
   <!-- Modal container (hidden by default) -->
   <div id="cartModal" style="display:none;">
       <!-- Content will be loaded here -->
@@ -34,23 +34,23 @@
       <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <li>
           <div class="flex items-center">
-            <a href="/" class="mr-2 text-sm font-medium text-gray-900">CoHo Architectural Design</a>
-            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
+            <a href="/" class="mr-2 text-sm font-medium text-gray-900 dark:text-white">CoHo Architectural Design</a>
+            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300 dark:text-white">
               <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
             </svg>
           </div>
         </li>
         <li>
           <div class="flex items-center">
-            <a href="/listprod" class="mr-2 text-sm font-medium text-gray-900">Design Catalogue</a>
-            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
+            <a href="/listprod" class="mr-2 text-sm font-medium text-gray-900 dark:text-white">Design Catalogue</a>
+            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300 dark:text-white">
               <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
             </svg>
           </div>
         </li>
 
         <li class="text-sm">
-          <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">{{productName}}</a>
+          <a href="#" aria-current="page" class="font-medium text-gray-500 dark:text-white hover:text-gray-600 dark:text-white">{{productName}}</a>
         </li>
       </ol>
     </nav>
@@ -65,13 +65,13 @@
     <!-- Product info -->
     <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
       <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-        <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{{productName}}</h1>
+        <h1 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">{{productName}}</h1>
       </div>
 
       <!-- Options -->
       <div class="mt-4 lg:row-span-3 lg:mt-0">
         <h2 class="sr-only">Product information</h2>
-        <p class="text-3xl tracking-tight text-gray-900">${{productPrice}}</p>
+        <p class="text-3xl tracking-tight text-gray-900 dark:text-white">${{productPrice}}</p>
 
         <form id="addCartForm" class="mt-10" action="/addcart" method="get">
             <input type="hidden" name="id" value="{{productId}}">
@@ -118,33 +118,33 @@
           <h3 class="sr-only">Description</h3>
 
           <div class="space-y-6">
-            <p class="text-base text-gray-900">{{productDesc}}</p>
+            <p class="text-base text-gray-900 dark:text-white">{{productDesc}}</p>
           </div>
         </div>
 
         <div class="mt-10">
-          <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
+          <h3 class="text-sm font-medium text-gray-900 dark:text-white">Highlights</h3>
 
           <div class="mt-4">
             <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-              <li class="text-gray-400"><span class="text-gray-600">Fully rendered interior and exterior</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Fully furnished interiors</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Built in Unreal Engine 5</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Up to 8k textures and foliage</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Ray tracing</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Up to 8k textures and foliage</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Real-time rendering</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Global illumination and advanced virtualized geometry with Unreal Engine 5 Lumen + Nanite</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Post-processing</span></li>
+              <li class="text-gray-400 dark:text-white"><span class="text-gray-600 dark:text-white">Fully rendered interior and exterior</span></li>
+              <li class="text-gray-400 dark:text-white"><span class="text-gray-600 dark:text-white">Fully furnished interiors</span></li>
+              <li class="text-gray-400 dark:text-white"><span class="text-gray-600 dark:text-white">Built in Unreal Engine 5</span></li>
+              <li class="text-gray-400 dark:text-white"><span class="text-gray-600 dark:text-white">Up to 8k textures and foliage</span></li>
+              <li class="text-gray-400 dark:text-white"><span class="text-gray-600 dark:text-white">Ray tracing</span></li>
+              <li class="text-gray-400 dark:text-white"><span class="text-gray-600 dark:text-white">Up to 8k textures and foliage</span></li>
+              <li class="text-gray-400 dark:text-white"><span class="text-gray-600 dark:text-white">Real-time rendering</span></li>
+              <li class="text-gray-400 dark:text-white"><span class="text-gray-600 dark:text-white">Global illumination and advanced virtualized geometry with Unreal Engine 5 Lumen + Nanite</span></li>
+              <li class="text-gray-400 dark:text-white"><span class="text-gray-600 dark:text-white">Post-processing</span></li>
             </ul>
           </div>
         </div>
 
         <div class="mt-10">
-          <h2 class="text-sm font-medium text-gray-900">Details</h2>
+          <h2 class="text-sm font-medium text-gray-900 dark:text-white">Details</h2>
 
           <div class="mt-4 space-y-6">
-            <p class="text-sm text-gray-600">The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming &quot;Charcoal Gray&quot; limited release.</p>
+            <p class="text-sm text-gray-600 dark:text-white">The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming &quot;Charcoal Gray&quot; limited release.</p>
           </div>
         </div>
       </div>
