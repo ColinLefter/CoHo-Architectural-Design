@@ -1,94 +1,82 @@
-<div style="margin-top: 20px;"> <!-- Adding space -->
+<div class="bg-white">
+  <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-8 lg:px-8">
+    <h1 class="text-3xl font-bold tracking-tight text-black">Product Catalogue</h1>
 
-<h1>Search for the products you want to buy:</h1>
+    <div style="margin-top: 20px;"> <!-- Adding space -->
 
+    <!-- Container for both search and product list -->
+    <div class="flex flex-col gap-6">
 
-<style>
-  table {
-    border-collapse: collapse;
-    width: 90%;
-  }
+      <!-- Search Form -->
+      <form action="/listprod" method="get" class="w-full">
+        <div class="flex items-center">
+          <!-- Search Input -->
+          <input type="text" name="productName" placeholder="Search for a product" class="border-2 border-gray-300 rounded-lg p-2 flex-grow" value="{{searchValue}}">
 
-  table, th, td {
-    border: 5px solid #ddd;
-  }
-
-  th, td {
-    padding: 10px;
-    text-align: left;
-  }
-</style>
-
-<table>
-  <tr>
-    <td colspan="2">
-      <form action="/listprod" method="get">
-        <input type="text" name="productName" placeholder="Search for a product" size="50" value="{{searchValue}}">
-      </td>
-      <td>
-        <input type="submit" value="Submit">
-      </td>
-      <td>
-        <input type="reset" value="Reset"><small> (Leave blank for all products)</small>
-      </td>
-    </tr>
-  </form>
-</table>
-
-
-<h2>All Products</h2>
-<table border='1' cellpadding='10'>
-  <tr>
-    <th></th>
-    <th>Product Name</th>
-    <th>Category</th>
-    <th>Product Price</th>
-  </tr>
-  <div id="cartModal" style="display:none;">
-    <div id="cartContainer"></div>
-    <button onclick="closeCartModal()">Close Cart</button>
-  </div>
-  {{#each products}}
-    <tr>
-        <td><a href="#" onclick="addToCart('{{productId}}', '{{productName}}', '{{productPrice}}')">Add to cart</a></td> 
-       
-        <td>
-          <div class="flex items-center"> <!-- Use flex to align items horizontally -->
-            <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg mr-4"> <!-- Adjusted aspect ratio for a square thumbnail and added margin-right -->
-              <img src="{{displayOne}}" class="mx-auto h-auto max-w-full w-auto object-cover object-center" style="width: 100px; height: 100px;"> <!-- Adjusted styles for width and height -->
-            </div>
-            <a href="/product?id={{productId}}&name={{productName}}&price={{productPrice}}&productDesc={{productDesc}}">{{productName}}</a>
+          <!-- Buttons -->
+          <div class="ml-2 flex items-center">
+            <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <input type="reset" value="Reset" class="bg-gray-300 hover:bg-gray-400 text-black py-2 px-4 rounded ml-1">
           </div>
-        </td>
+        </div>
+      </form>
+      
+      <h2 class="text-2xl font-bold tracking-tight text-black">All Products</h2>
 
+      <!-- Product List -->
+      <div class="divide-y divide-gray-200">
+        {{#each products}}
+          <div class="flex items-center py-4">
+            <!-- Product Image -->
+            <div class="flex-shrink-0 w-32 h-32">
+              <img src="{{displayOne}}" alt="{{productName}}" class="h-full w-full object-cover rounded-lg">
+            </div>
+            <!-- Product Details -->
+            <div class="ml-4 flex-grow">
+              <h3 class="text-lg font-bold">{{productName}}</h3>
+              <p class="text-gray-500">{{categoryName}}</p>
+              <p class="text-gray-500">${{formattedPrice}}</p>
+            </div>
+            <!-- Add to Cart Link -->
+            <a href="#" onclick="addToCart('{{productId}}', '{{productName}}', '{{productPrice}}')" class="text-blue-600 hover:text-blue-800 ml-4">Add to cart</a>
+          </div>
+        {{/each}}
+      </div>
 
-        <td>{{categoryName}}</td>
-        <td>{{formattedPrice}}</td>
-    </tr>
-    <script>
-        function showCartModal(html) {
-            document.getElementById('cartContainer').innerHTML = html;
-            document.getElementById('cartModal').style.display = 'block';
-        }
-
-        function closeCartModal() {
-            document.getElementById('cartModal').style.display = 'none';
-        }
-
-        function addToCart(productId, productName, productPrice) {
-            // Prevent the default link behavior
-            event.preventDefault();
-
-            let fetchUrl = `/addcart?id=${encodeURIComponent(productId)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}`;
-
-            fetch(fetchUrl)
-                .then(response => response.text())
-                .then(html => {
-                    showCartModal(html);
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
-  {{/each}}
-</table>
+    </div> <!-- End of container for search and product list -->
+  </div>
 </div>
+
+
+<!-- Cart Modal -->
+<div id="cartModal" style="display:none;" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+  <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+    <div id="cartContainer"></div>
+    <button onclick="closeCartModal()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Close Cart</button>
+  </div>
+</div>
+
+<script>
+    function showCartModal(html) {
+        document.getElementById('cartContainer').innerHTML = html;
+        document.getElementById('cartModal').style.display = 'block';
+    }
+
+    function closeCartModal() {
+        document.getElementById('cartModal').style.display = 'none';
+    }
+
+    function addToCart(productId, productName, productPrice) {
+        // Prevent the default link behavior
+        event.preventDefault();
+
+        let fetchUrl = `/addcart?id=${encodeURIComponent(productId)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}`;
+
+        fetch(fetchUrl)
+            .then(response => response.text())
+            .then(html => {
+                showCartModal(html);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
