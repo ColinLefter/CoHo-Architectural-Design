@@ -9,6 +9,9 @@ module.exports = {
       gridTemplateRows: {
         '[auto,auto,1fr]': 'auto auto 1fr',
       },
+      fontFamily: {
+        garamond: ['Garamond', 'serif'],
+      },
     },
   },
   plugins: [
