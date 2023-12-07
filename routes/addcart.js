@@ -43,7 +43,7 @@ router.get('/', function(req, res, next) {
     }
 
     req.session.productList = productList;
-    res.render('showcart', { productList: productList }, function(err, html) {
+    res.render('showCartFullScreen', { productList: productList }, function(err, html) {
         if (err) {
             console.error(err);
             res.sendStatus(500);

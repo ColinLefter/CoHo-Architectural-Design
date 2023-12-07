@@ -44,45 +44,59 @@
               <p class="text-gray-500 dark:text-white">{{categoryName}}</p>
               <p class="text-gray-500 dark:text-white">{{formattedPrice}}</p>
             </div>
-            <!-- Add to Cart Link -->
-            <a href="#" onclick="addToCart('{{productId}}', '{{productName}}', '{{productPrice}}')" class="text-blue-600 hover:text-blue-800 ml-4">Add to cart</a>
+            <!-- Add to Cart Form -->
+            <form id="addCartForm_{{productId}}" class="mt-10" action="/addcart" method="get" data-product-id="{{productId}}">
+              <input type="hidden" name="id" value="{{productId}}">
+              <input type="hidden" name="name" value="{{productName}}">
+              <input type="hidden" name="price" value="{{productPrice}}">
+              <button type="submit" class="mt-10 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to cart</button>
+              <span class="item-count">0</span>
+            </form>
           </div>
         {{/each}}
       </div>
+      <script>
+        const productItemCounts = {}; // Object to keep track of item counts for each product
 
-    </div> <!-- End of container for search and product list -->
-  </div>
+        document.addEventListener('DOMContentLoaded', function () {
+          const addToCartForms = document.querySelectorAll('form[id^="addCartForm_"]');
+
+          addToCartForms.forEach(form => {
+            const productId = form.getAttribute('data-product-id');
+            const itemCountSpan = form.querySelector('.item-count'); // Get the item count span within this form
+
+            form.addEventListener('submit', function (e) {
+              e.preventDefault();
+
+              let formData = new FormData(this);
+              let queryParams = new URLSearchParams(formData).toString();
+              let fetchUrl = '/addcart?' + queryParams;
+              let button = this.querySelector('button');
+
+              fetch(fetchUrl)
+                .then(response => {
+                  if (response.ok) {
+                    if (!productItemCounts[productId]) {
+                      productItemCounts[productId] = 1;
+                    } else {
+                      productItemCounts[productId]++;
+                    }
+
+                    itemCountSpan.textContent = productItemCounts[productId]; // Update the item count span within this form
+                    button.textContent = 'In cart: ' + productItemCounts[productId]; // Update button text
+                  } else {
+                    // Handle response error
+                    console.error('Error:', response.statusText);
+                    button.textContent = 'Error adding to cart';
+                  }
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                  button.textContent = 'Error adding to cart';
+                });
+            });
+          });
+        });
+      </script>
+    </div>
 </div>
-
-<!-- Cart Modal -->
-<div id="cartModal" style="display:none;" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-  <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white dark:bg-black">
-    <div id="cartContainer"></div>
-    <button onclick="closeCartModal()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Close Cart</button>
-  </div>
-</div>
-
-<script>
-    function showCartModal(html) {
-        document.getElementById('cartContainer').innerHTML = html;
-        document.getElementById('cartModal').style.display = 'block';
-    }
-
-    function closeCartModal() {
-        document.getElementById('cartModal').style.display = 'none';
-    }
-
-    function addToCart(productId, productName, productPrice) {
-        // Prevent the default link behavior
-        event.preventDefault();
-
-        let fetchUrl = `/addcart?id=${encodeURIComponent(productId)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}`;
-
-        fetch(fetchUrl)
-            .then(response => response.text())
-            .then(html => {
-                showCartModal(html);
-            })
-            .catch(error => console.error('Error:', error));
-    }
-</script>
