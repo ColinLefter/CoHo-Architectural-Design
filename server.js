@@ -46,19 +46,22 @@ dbConfig = {
   }
 }
 
-// Setting up the session.
-// This uses MemoryStorage which is not
-// recommended for production use.
+// Setting up the session
 app.use(session({
   secret: 'COSC 304 Rules!',
   resave: false,
   saveUninitialized: false,
   cookie: {
-    httpOnly: false,
-    secure: false,
-    maxAge: 60000,
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production', // For production
+    maxAge: 3600000, // 1 hour, for example
   }
-}))
+}));
+
+app.use((req, res, next) => {
+  res.locals.username = req.session.username;
+  next();
+});
 
 // Setting up the rendering engine
 app.engine('handlebars', exphbs());
