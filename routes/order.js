@@ -24,9 +24,8 @@ function getCurrentDateTime() {
 let currentDateTime = getCurrentDateTime();
 console.log(currentDateTime);
 
-router.get('/', async function(req, res, next) {
+router.post('/', async function(req, res, next) {
     let productList;
-    let customer;
     let orderId;
 
     // Declare these variables at the beginning
@@ -43,17 +42,35 @@ router.get('/', async function(req, res, next) {
         return res.render('order', { error: 'Your shopping cart is empty! Cannot check out.', orderSummary: null });
     }
 
-    let customerId = req.query.customerId; // from the form on checkout.js
-    let password = req.query.password; // from the form on checkout.js
-
-    if (!customerId || isNaN(customerId)) {
-        // Set an error message and render the template
-        return res.render('order', { error: 'Invalid or missing customer ID.', orderSummary: null });
-    }
+    // from the form on checkout.js
+    let userId = req.body.username; // User's userId (username)
+    let password = req.body.password; // User's password
+    
+    // Check if the userId and password match what is in the database
+    let customerQuery = "SELECT customerId, firstName, lastName, password FROM customer WHERE userid = @userId";
 
     // Now we set up the connection to the DB:
     try {
         let pool = await sql.connect(dbConfig);
+
+        let customer = await pool.request()
+        .input('userId', sql.VarChar, userId)
+        .query(customerQuery);
+
+        // Check if a customer with the given userId and matching password is found
+        if (customer.recordset.length === 0 || customer.recordset[0].password != password) {
+            // Handle incorrect login details
+            return res.render('order', { error: 'Invalid login details.', orderSummary: null });
+        }
+
+        // Now we have the cunstomerId
+        let customerId = customer.recordset[0].customerId;
+        let customerName = customer.recordset[0].firstName + " " + customer.recordset[0].lastName;
+
+        if (!customerId || isNaN(customerId)) { // We need to be using the number hence the query
+            // Set an error message and render the template
+            return res.render('order', { error: 'Invalid or missing customer ID.', orderSummary: null });
+        }
 
         // Check if the password matches what is in the database
         let passwordCheckQuery = "SELECT password FROM customer WHERE customerId = @customerId";
@@ -147,7 +164,7 @@ router.get('/', async function(req, res, next) {
         let orderSummaryData = {
             orderId,
             customerId,
-            customer,
+            customerName,
             totalAmount: totalAmount.toFixed(2),
             currentDateTime,
             productList: orderSummary,
