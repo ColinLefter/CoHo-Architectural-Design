@@ -4,9 +4,9 @@ const session = require('express-session')
 const bodyParser  = require('body-parser');
 const sql = require('mssql');
 const fs = require('fs');
+const { router: loadData, loadDatabase } = require('./routes/loaddata');
 
 let index = require('./routes/index');
-let loadData = require('./routes/loaddata');
 let listOrder = require('./routes/listorder');
 let listProd = require('./routes/listprod');
 let addCart = require('./routes/addcart');
@@ -53,7 +53,7 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production', // For production
+    secure: true, // For production
     maxAge: 3600000, // 1 hour, for example
   }
 }));
@@ -76,35 +76,16 @@ pool.on('error', err => {
     console.error('SQL pool error:', err);
 });
 
-// Middleware function to load data in the background
-app.use(async (req, res, next) => {
-  if (!req.session.loaded) {
-    // Load data here (similar to your loaddata.js logic)
+const refreshInterval = 30000; // 30 seconds
+setInterval(async () => {
+    console.log("Refreshing database...");
     try {
-      let pool = await sql.connect(dbConfig);
-
-      // Load the data from your file
-      let data = fs.readFileSync("./ddl/SQLServer_orderdb.ddl", { encoding: 'utf8' });
-      let commands = data.split(";");
-      for (let i = 0; i < commands.length; i++) {
-        let command = commands[i];
-        try {
-          let result = await pool.request().query(command);
-          // Handle or log the result as needed
-        } catch (err) {
-          // Handle any errors                    
-        }
-      }
-
-      // Set a flag in the session to indicate that the database is loaded
-      req.session.loaded = true;
+        await loadDatabase();
+        console.log("Database refreshed successfully");
     } catch (err) {
-      console.dir(err);
+        console.error("Error refreshing database:", err);
     }
-  }
-  next();
-});
-
+}, refreshInterval);
 
 // Setting up Express.js routes.
 // These present a "route" on the URL of the site.
