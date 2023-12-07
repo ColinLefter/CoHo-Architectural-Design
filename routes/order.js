@@ -64,6 +64,7 @@ router.post('/', async function(req, res, next) {
         }
 
         // Now we have the cunstomerId
+        console.log("Customer Details:", customer.recordset[0]);
         let customerId = customer.recordset[0].customerId;
         let customerName = customer.recordset[0].firstName + " " + customer.recordset[0].lastName;
 

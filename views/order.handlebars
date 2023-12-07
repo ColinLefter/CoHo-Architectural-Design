@@ -1,38 +1,45 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Your Order Summary</title>
-</head>
-<body>
-    {{#if error}}
-        <h2>{{error}}</h2>
-    {{else}}
-        <h1>Your Order Summary</h1>
-        <h2>Order ID: {{orderSummary.orderId}}</h2>
-        <h2>Customer ID: {{orderSummary.customerId}}</h2>
-        <h2>Customer Name: {{orderSummary.customer}}</h2>
-        <h2>Total Amount: ${{orderSummary.totalAmount}}</h2>
-        <h2>Order Date: {{orderSummary.currentDateTime}}</h2>
+<html class="dark h-full">
 
-        <table>
+<body class="h-full">
+<main class="grid min-h-full place-items-center bg-white dark:bg-black px-6 py-24 sm:py-32 lg:px-8">
+  <div class="text-center">
+    <p class="text-base font-semibold text-indigo-600">Order #{{orderSummary.orderId}} on {{orderSummary.currentDateTime}}</p>
+    <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">Thank you for your order!</h1>
+    <p class="mt-6 text-base leading-7 text-gray-600 dark:text-white">Here is what we got from you:</p>
+    <p class="mt-6 text-base leading-7 text-gray-600 dark:text-white">Customer ID: {{orderSummary.customerId}} | Customer Name: {{orderSummary.customerName}} | Total Amount: ${{orderSummary.totalAmount}}</p>
+    <div class="mt-10">
+      <!-- Product List Table -->
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-white bg-black uppercase tracking-wider">Product ID</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-white bg-black uppercase tracking-wider">Product Name</th>
+            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-white bg-black uppercase tracking-wider">Quantity</th>
+            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-white bg-black uppercase tracking-wider">Price</th>
+            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-white bg-black uppercase tracking-wider">Subtotal</th>
+            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-white bg-black uppercase tracking-wider">Total amount</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white dark:bg-black divide-y divide-gray-200">
+          {{#each orderSummary.productList}}
             <tr>
-                <th>Product ID</th>
-                <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Subtotal</th>
-            </tr>
-            {{#each orderSummary.productList}}
-                <tr>
-                    <td>{{this.productId}}</td>
-                    <td>{{this.productName}}</td>
-                    <td align="center">{{this.productQuantity}}</td>
-                    <td align="right">${{this.productPrice}}</td>
-                    <td align="right">${{this.subtotal}}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">{{this.productId}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-white">{{this.productName}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-white">{{this.productQuantity}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-500 dark:text-white">${{this.productPrice}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-500 dark:text-white">${{this.subtotal}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-500 dark:text-white">${{this.subtotal}}</td>
                 </tr>
             {{/each}}
-        </table>
-        <h1>Order completed. Will be shipped soon...</h1>
-    {{/if}}
-</body>
-</html>
+            </tbody>
+            </table>
+            </div>
+        <div class="mt-10 flex items-center justify-center gap-x-6">
+        <a href="/" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Home</a>
+        <a href="/customer" class="text-sm font-semibold text-gray-900 dark:text-white">My account<span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
+        </main>
+        </body>
+        </html>
