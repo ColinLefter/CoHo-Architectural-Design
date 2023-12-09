@@ -1,6 +1,6 @@
 # CoHo-Architectural-Design
 ![home_page_2](https://github.com/ColinLefter/CoHo-Architectural-Design/assets/68645918/4539724c-a4cb-4a49-b825-5b3e6a8f4cd5)
-
+<img width="1440" alt="homeBanner" src="https://github.com/ColinLefter/CoHo-Architectural-Design/assets/68645918/28ee1349-3ed0-47a9-9b4f-88e5553c57ce">
 <img width="1440" alt="home" src="https://github.com/ColinLefter/CoHo-Architectural-Design/assets/68645918/6f98d391-f5f1-4af7-8ece-d942c4d85498">
 <img width="1440" alt="product" src="https://github.com/ColinLefter/CoHo-Architectural-Design/assets/68645918/1f277964-4879-492b-b8bf-7b5b8e354a22">
 <img width="1440" alt="createAccount" src="https://github.com/ColinLefter/CoHo-Architectural-Design/assets/68645918/1ea2d17d-688b-48be-885c-5d29b1ad4029">
